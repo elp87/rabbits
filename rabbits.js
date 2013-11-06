@@ -105,3 +105,104 @@ function sornNew(arr) {
     newArr.sort();
     return newArr;
 }
+
+function stringReverse(s) {
+    return s.split("").reverse().join("");
+}
+
+function anagramClean(arr) {
+    var arr1 = [];
+    for (var i = 0; i < arr.length; i++) {
+        arr1[i] = arr[i];
+    }
+    
+    for (var i = 0; i < arr1.length; i++) {
+        var word = arr1[i].toLowerCase().split("").sort().join("");
+        for (var j = 0; j < arr1.length; j++) {
+            var eqWord = arr1[j].toLowerCase().split("").sort().join("");
+            if (arr1[j] != arr1[i] && word === eqWord) {
+                arr1.splice(j, 1);
+            }
+        }
+    }
+    return arr1;
+}
+
+function getWeekDay(date) {
+    switch (date.getDay()) {
+        case 0: return "вс";
+            break;
+        case 1: return "пн";
+            break;
+        case 2: return "вт";
+            break;
+        case 3: return "ср";
+            break;
+        case 4: return "чт";
+            break;
+        case 5: return "пт";
+            break;
+        case 6: return "сб";
+            break;
+        default: return "something is wrong"
+    }
+}
+
+function getSecFromStartOfDay() {
+    var now = new Date();
+    var start = new Date();
+    start.setHours(0, 0, 0, 0);
+    var diff = now - start;
+    diff /= 1000;
+    return diff;
+}
+
+function getSecToEndOfDay() {
+    var now = new Date();
+    var end = new Date();
+    end.setHours(0, 0, 0, 0);
+    end.setDate(end.getDate() + 1);
+    var diff = end - now;
+    diff /= 1000;
+    return diff;
+}
+
+function formatDate(date) {
+    var day = date.getDate();
+    if (day < 10) day = "0" + day;
+    var month = date.getMonth() + 1;
+    if (month < 10) month = "0" + month;
+    var year = date.getFullYear();
+    year = year % 100;
+    if (year < 10) year = "0" + year;
+    var result = day + "." + month + "." + year;
+    return result;
+}
+
+function formatDiffDate(date) {
+    var now = new Date();
+    var diff = (now - date) / 1000;
+    if (diff < 1) return "только что";
+    else if (diff < 60) return diff + " сек. назад";
+    else if (diff < 3600) return +(diff / 60) + " мин. назад";
+    else return getFullDate(date);
+}
+
+function getFullDate(date) {
+    var day = date.getDate();
+    if (day < 10) day = "0" + day;
+    var month = date.getMonth() + 1;
+    if (month < 10) month = "0" + month;
+    var year = date.getFullYear();
+    year = year % 100;
+    if (year < 10) year = "0" + year;
+
+    //getHours(), getMinutes(), getSeconds()
+    var hour = date.getHours();
+    if (hour < 10) hour = "0" + hour;
+    var min = date.getMinutes();
+    if (min < 10) min = "0" + min;
+
+    var result = day + "." + month + "." + year + " " + hour + ":" + min;
+    return result;
+}
