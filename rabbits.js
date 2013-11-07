@@ -197,7 +197,6 @@ function getFullDate(date) {
     year = year % 100;
     if (year < 10) year = "0" + year;
 
-    //getHours(), getMinutes(), getSeconds()
     var hour = date.getHours();
     if (hour < 10) hour = "0" + hour;
     var min = date.getMinutes();
@@ -205,4 +204,59 @@ function getFullDate(date) {
 
     var result = day + "." + month + "." + year + " " + hour + ":" + min;
     return result;
+}
+
+function sum() {
+    var a = 0;
+    for (var i = 0; i < arguments.length; i++) {
+        a += arguments[i];
+    }
+    alert(a);
+    return a;
+}
+
+var calculator = {
+    a: 0,
+    b: 0,
+
+    readValues: function () {
+        this.a = prompt("Введите 1-е число", "0");
+        this.b = prompt("Введите 2-е число", "0");
+    },
+
+    sum: function () {
+        return +this.a + +this.b;
+    },
+
+    mul: function () {
+        return +this.a * +this.b;
+    }
+}
+
+function Summator() {
+    var a;
+    var b;
+
+    this.sum = function(a, b) {
+        return a + b;
+    }
+
+    this.run = function() {
+        this.a = prompt("Введите 1-е число", "0");
+        this.b = prompt("Введите 2-е число", "0");
+        alert(this.sum(+this.a, +this.b));
+    }
+}
+
+function Adder(startingValue) {
+    this.value = startingValue;
+
+    this.addInput = function () {
+        var a = prompt("Сколько будем добавлять", "0");
+        this.value += +a;
+    }
+
+    this.showValue = function () {
+        alert(this.value);
+    }
 }
