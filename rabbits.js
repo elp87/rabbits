@@ -260,3 +260,20 @@ function Adder(startingValue) {
         alert(this.value);
     }
 }
+
+function outputDate(date) {
+    if (date.getDate) {
+        return formatDate(date);
+    }
+    if (typeof date == "string") {
+        var a = Date.parse(date);
+        return formatDate(new Date(a));
+    }
+    if (typeof date == "number") {
+        return formatDate(new Date(date * 1000));
+    }
+    if (date.splice) {
+        var a = new Date(date[0], date[1], date[2]);
+        return formatDate(a);
+    }
+}
