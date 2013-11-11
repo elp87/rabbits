@@ -277,3 +277,46 @@ function outputDate(date) {
         return formatDate(a);
     }
 }
+
+function printNumbersInterval() {
+	var a = 0;
+	var timerID = setInterval(function() {
+		console.log(a);	
+		a++;
+		if (a > 20) { clearTimeout(timerID); }
+	}, 100);
+}
+
+function printNumbersIntervalTimeOut() {
+	var a = 0;
+	var timerId = setTimeout(function run() {
+		console.log(a);
+		a++;
+		if (a > 20) { clearTimeout(timerId); }
+		else { timerId = setTimeout(run, 100); }
+	}, 100);
+}
+
+function delay(f, ms) {
+	return function() {
+		var savedThis = this;
+		var savedArgs = arguments;
+ 
+		setTimeout(function() {
+			f.apply(savedThis, savedArgs);
+		}, ms);
+	};
+}
+
+function debounce(f, ms) {
+  var state = null;
+  var COOLDOWN = 1;
+
+  return function() {
+    if (state) return;
+    f.apply(this, arguments);
+    state = COOLDOWN;
+    setTimeout(function() { state = null }, ms);
+  }
+
+}
