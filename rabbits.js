@@ -318,5 +318,36 @@ function debounce(f, ms) {
     state = COOLDOWN;
     setTimeout(function() { state = null }, ms);
   }
+}
 
+function bindLate(context, funcName) { 
+  return function() {
+    return context[funcName].apply(context, arguments);
+  };
+}
+
+function Article() {
+	if (Article.count == NaN || Article.count == undefined) Article.count = 0;
+	Article.created = new Date();
+	Article.count++;
+}
+Article.showStats = function() {
+	var text = "Всего: " + this.count + ", Последняя: " + formatDate(this.created); 
+	alert(text);
+};
+
+function getSums(arr) {
+  var result = [];
+
+  var totalSum = arr.reduce(function(sum, item) {
+    result.push(sum);
+    return sum + item;
+  });
+  result.push(totalSum);  
+
+  return result;
+}
+
+function globalEval(code) { // объединим два способа в одну функцию
+  window.execScript ? execScript(code) : window.eval(code);
 }
