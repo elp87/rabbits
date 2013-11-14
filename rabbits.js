@@ -351,3 +351,10 @@ function getSums(arr) {
 function globalEval(code) { // объединим два способа в одну функцию
   window.execScript ? execScript(code) : window.eval(code);
 }
+
+//Изменяет размер шрифта всей страницы (внутри body)
+function scale(mul) {
+	var size = document.body.style.fontSize;
+	size = (parseInt(size) * mul) + "%";
+	document.body.style.fontSize = size;
+}
